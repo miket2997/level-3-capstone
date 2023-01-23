@@ -1,11 +1,11 @@
 import React from 'react'
-import './App.css'
+import Meme from './components/Meme'
 
 function App() {
 
 
   return (
-    <h1>Testing</h1>
+    <Meme />
   )
 }
 
