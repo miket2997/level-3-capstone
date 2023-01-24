@@ -36,10 +36,10 @@ export default function Meme(){
         event.preventDefault()
         //console.log("submit")
         if(editMeme === false){
-            const newMeme = {...meme};
-            newMeme.id = uuidv4();
+            const newMemeListItem = {...meme};
+            newMemeListItem.id = uuidv4();
             setMemesList(prevList => (
-                [...prevList, newMeme]
+                [...prevList, newMemeListItem]
             ))
             }else if(editMeme === true){
                 setEditMeme(false)
@@ -58,6 +58,7 @@ export default function Meme(){
     }
 
     function handleChange(event){
+        //console.log("changing")
         const {name, value} = event.target;
         setMeme(prevMeme => ({
             ...prevMeme,
@@ -78,13 +79,17 @@ export default function Meme(){
         )
     })
 
-    function deleteMeme(id){
-        setMemesList(prevList => prevList.filter((meme) => meme.id !== id))
+    function deleteMeme(index){
+        setMemesList(prevList => prevList.filter(meme => {
+            return meme.id !== index
+        }))
     }
 
-    function edit(id){
+    function edit(index){
         setEditMeme(true)
-        setMeme(memesList.find(meme => meme.id === id))
+        setMeme(memesList.find(meme => {
+            return meme.id === index
+        }))
     }
 
 
